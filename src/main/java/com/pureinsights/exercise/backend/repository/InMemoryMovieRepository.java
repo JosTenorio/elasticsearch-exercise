@@ -18,6 +18,7 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.lucene.store.Directory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +36,8 @@ import java.util.stream.Stream;
  * In-memory implementation of {@link MovieRepository}
  * @author Andres Marenco
  */
-@Repository
+@Repository("InMemory")
+@Qualifier("InMemory")
 @Slf4j
 public class InMemoryMovieRepository implements MovieRepository, Closeable {
   /** Input file with the movie collection */

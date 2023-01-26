@@ -3,6 +3,7 @@ package com.pureinsights.exercise.backend.service;
 import com.pureinsights.exercise.backend.model.Movie;
 import com.pureinsights.exercise.backend.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class MovieServiceImpl implements MovieService {
 
   @Autowired
+  @Qualifier("Elastic")
   private MovieRepository movieRepository;
 
 
