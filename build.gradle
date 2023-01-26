@@ -1,0 +1,35 @@
+plugins {
+  id 'org.springframework.boot' version '2.6.2'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'java'
+}
+
+group = 'com.pureinsights.exercise'
+version = '1.0'
+sourceCompatibility = '17'
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation "com.opencsv:opencsv:${openCSVVersion}"
+  implementation "org.apache.lucene:lucene-core:${luceneVersion}"
+  implementation "org.apache.lucene:lucene-queryparser:${luceneVersion}"
+  implementation "org.springdoc:springdoc-openapi-ui:${openAPIVersion}"
+  implementation "org.springframework.boot:spring-boot-starter-web"
+  implementation "org.springframework.data:spring-data-commons"
+  compileOnly "org.projectlombok:lombok"
+  annotationProcessor "org.projectlombok:lombok"
+  testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
+
+test {
+  useJUnitPlatform()
+}
