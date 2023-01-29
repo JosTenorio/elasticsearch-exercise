@@ -19,11 +19,12 @@ repositories {
 }
 
 dependencies {
-  implementation 'org.elasticsearch.client:transport:7.17.8'
-  implementation 'org.elasticsearch.client:elasticsearch-rest-client:8.6.1'
-  implementation 'jakarta.json:jakarta.json-api:2.0.1'
-  implementation 'co.elastic.clients:elasticsearch-java:8.6.1'
-  implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+  implementation "com.opencsv:opencsv:${openCSVVersion}"
+  implementation "org.elasticsearch.client:transport:${elasticsearchTrasnsportVersion}"
+  implementation "org.elasticsearch.client:elasticsearch-rest-client:${elasticsearchRestClientVersion}"
+  implementation "jakarta.json:jakarta.json-api:${jakartaJsonApiVersion}"
+  implementation "co.elastic.clients:elasticsearch-java:${elasticsearchJavaClientVersion}"
+  implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDataBindVersion}"
   implementation "org.springdoc:springdoc-openapi-ui:${openAPIVersion}"
   implementation "org.springframework.boot:spring-boot-starter-web"
   implementation "org.springframework.data:spring-data-commons"
@@ -31,6 +32,7 @@ dependencies {
   annotationProcessor "org.projectlombok:lombok"
   testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
+
 
 test {
   useJUnitPlatform()

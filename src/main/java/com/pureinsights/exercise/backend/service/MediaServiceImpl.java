@@ -21,7 +21,7 @@ public class MediaServiceImpl implements MediaService {
 
 
   @Override
-  public Page<Media> search(String query, Pageable pageRequest) {
+  public Page<Media> searchTitle(String query, Pageable pageRequest) {
     return mediaRepository.searchByTitle(query, pageRequest);
   }
 
@@ -32,6 +32,6 @@ public class MediaServiceImpl implements MediaService {
 
   @Override
   public Page<Media> searchGenreInRateRange(String genre, Integer range, Pageable pageRequest) {
-    return mediaRepository.searchByTitleInRange(genre, range, pageRequest);
+    return mediaRepository.searchByTitleInRateRange(genre, range, pageRequest);
   }
 }

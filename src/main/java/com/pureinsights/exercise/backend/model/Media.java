@@ -17,6 +17,6 @@ public class Media {
     private String title;
     private String genre;
     private Float rate;
-    private Integer year;
+    private String year;
 
 }

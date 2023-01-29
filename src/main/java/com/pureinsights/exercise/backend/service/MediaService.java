@@ -16,7 +16,7 @@ public interface MediaService {
    * @param pageRequest the page request configuration
    * @return a page with the results of the search
    */
-  Page<Media> search(String query, Pageable pageRequest);
+  Page<Media> searchTitle(String query, Pageable pageRequest);
 
   /**
    * @return A mapping of string keys and values with the key for each range and its count as the value

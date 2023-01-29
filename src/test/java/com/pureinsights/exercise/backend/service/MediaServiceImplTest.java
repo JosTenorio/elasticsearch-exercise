@@ -1,5 +1,6 @@
 package com.pureinsights.exercise.backend.service;
 
+import com.pureinsights.exercise.backend.model.Media;
 import com.pureinsights.exercise.backend.repository.MediaRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * Unit tests for {@link MediaServiceImpl}
- * @author Andres Marenco
+ * @author Joseph Tenorio
  */
 @ExtendWith(MockitoExtension.class)
 class MediaServiceImplTest {
@@ -28,17 +29,17 @@ class MediaServiceImplTest {
 
 
   /**
-   * Tests the {@link MediaServiceImpl#search(String, Pageable)} method
+   * Tests the {@link MediaServiceImpl#searchTitle(String, Pageable)} method
    */
   @Test
   void searchTest() {
     var query = RandomStringUtils.randomAlphabetic(5);
     var pageRequest = Pageable.ofSize(10);
-    var movies = Page.<Movie>empty(pageRequest);
+    var mediaResult = Page.<Media>empty(pageRequest);
 
-    when(mediaRepository.searchByTitle(query, pageRequest)).thenReturn(movies);
+    when(mediaRepository.searchByTitle(query, pageRequest)).thenReturn(mediaResult);
 
-    var result = movieService.search(query, pageRequest);
-    assertEquals(movies, result);
+    var result = movieService.searchTitle(query, pageRequest);
+    assertEquals(mediaResult, result);
   }
 }

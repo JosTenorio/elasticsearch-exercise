@@ -17,34 +17,34 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * REST Controller for the search endpoints
- * @author Andres Marenco
+ * REST controller for media queries
+ * @author Joseph Tenorio
  */
 @Tag(name = "media")
 @RestController("/media")
-public class MovieController {
+public class MediaController {
 
   @Autowired
   private MediaService mediaService;
 
-
-  @Operation(summary = "Search the movie collection", description = "Executes a search of a movie in the collection")
-  @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Page<Media>> search(@RequestParam("q") String query, @ParameterObject Pageable pageRequest) {
-    return ResponseEntity.ok(mediaService.search(query, pageRequest));
+  @Operation(summary = "Search the media index by title",
+          description = "Executes a search of media by title")
+  @GetMapping(value = "/title/search", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Page<Media>> searchTitle(@RequestParam("q") String query, @ParameterObject Pageable pageRequest) {
+    return ResponseEntity.ok(mediaService.searchTitle(query, pageRequest));
   }
 
-  @Operation(summary = "Count titles grouped by rate ranges",
+  @Operation(summary = "Count the amount of media titles ranges of their rate",
           description = "Counts the different titles found in each range of rates: " +
                   "All above, [6-8[, [4-6[, [2-4[, All below")
-  @GetMapping(value = "/rate-range-count", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/rate/range-count", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Map<String, Integer>> countRateRanges() {
     return ResponseEntity.ok(mediaService.countRateRanges());
   }
 
   @Operation(summary = "Filter the movie collection by genre and rate range",
-          description = "Queries for all titles belonging to a given range whose rating is in a given range")
-  @GetMapping(value = "/genre-rate-filter", produces = MediaType.APPLICATION_JSON_VALUE)
+          description = "Queries for all media documents belonging to a given genre whose rating is in a given range")
+  @GetMapping(value = "/filter/genre-rate-range", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Page<Media>> searchGenreInRateRange(@RequestParam("genre") String genre, @RequestParam("range") Integer range,
                                             @ParameterObject Pageable pageRequest) {
     return ResponseEntity.ok(mediaService.searchGenreInRateRange(genre, range, pageRequest));

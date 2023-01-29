@@ -29,5 +29,5 @@ public interface MediaRepository {
    * @param pageRequest the page request configuration
    * @return a page with the results of the search
    */
-  Page<Media> searchByTitleInRange(String genre, Integer range, Pageable pageRequest);
+  Page<Media> searchByTitleInRateRange(String genre, Integer range, Pageable pageRequest);
 }
