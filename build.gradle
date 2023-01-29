@@ -19,9 +19,11 @@ repositories {
 }
 
 dependencies {
-  implementation "com.opencsv:opencsv:${openCSVVersion}"
-  implementation "org.apache.lucene:lucene-core:${luceneVersion}"
-  implementation "org.apache.lucene:lucene-queryparser:${luceneVersion}"
+  implementation 'org.elasticsearch.client:transport:7.17.8'
+  implementation 'org.elasticsearch.client:elasticsearch-rest-client:8.6.1'
+  implementation 'jakarta.json:jakarta.json-api:2.0.1'
+  implementation 'co.elastic.clients:elasticsearch-java:8.6.1'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
   implementation "org.springdoc:springdoc-openapi-ui:${openAPIVersion}"
   implementation "org.springframework.boot:spring-boot-starter-web"
   implementation "org.springframework.data:spring-data-commons"

@@ -1,7 +1,6 @@
 package com.pureinsights.exercise.backend.controller;
 
-import com.pureinsights.exercise.backend.model.Movie;
-import com.pureinsights.exercise.backend.service.MovieService;
+import com.pureinsights.exercise.backend.service.MediaService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ class MovieControllerTest {
   private MockMvc mockMvc;
 
   @MockBean
-  private MovieService movieService;
+  private MediaService mediaService;
 
 
   /**
@@ -45,7 +44,7 @@ class MovieControllerTest {
     var query = RandomStringUtils.randomAlphabetic(5);
     var movieList = List.of(Movie.builder().name(RandomStringUtils.randomAlphabetic(5)).build());
     var moviePage = new PageImpl<>(movieList, pageRequest, movieList.size());
-    when(movieService.search(query, pageRequest)).thenReturn(moviePage);
+    when(mediaService.search(query, pageRequest)).thenReturn(moviePage);
 
     mockMvc.perform(MockMvcRequestBuilders.get("/search")
         .queryParam("page", "0")
@@ -66,7 +65,7 @@ class MovieControllerTest {
   void search_empty_Test() throws Exception {
     var pageRequest = Pageable.ofSize(10);
     var query = RandomStringUtils.randomAlphabetic(5);
-    when(movieService.search(query, pageRequest)).thenReturn(Page.empty());
+    when(mediaService.search(query, pageRequest)).thenReturn(Page.empty());
 
     mockMvc.perform(MockMvcRequestBuilders.get("/search")
         .queryParam("page", "0")

@@ -38,7 +38,7 @@ import static org.mockito.Mockito.when;
  * @author Andres Marenco
  */
 @ExtendWith(MockitoExtension.class)
-class InMemoryMovieRepositoryTest {
+class InMemoryMediaRepositoryTest {
 
   @InjectMocks
   private InMemoryMovieRepository movieRepository;

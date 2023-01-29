@@ -1,7 +1,6 @@
 package com.pureinsights.exercise.backend.service;
 
-import com.pureinsights.exercise.backend.model.Movie;
-import com.pureinsights.exercise.backend.repository.MovieRepository;
+import com.pureinsights.exercise.backend.repository.MediaRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,21 +14,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
- * Unit tests for {@link MovieServiceImpl}
+ * Unit tests for {@link MediaServiceImpl}
  * @author Andres Marenco
  */
 @ExtendWith(MockitoExtension.class)
-class MovieServiceImplTest {
+class MediaServiceImplTest {
 
   @InjectMocks
-  private MovieServiceImpl movieService;
+  private MediaServiceImpl movieService;
 
   @Mock
-  private MovieRepository movieRepository;
+  private MediaRepository mediaRepository;
 
 
   /**
-   * Tests the {@link MovieServiceImpl#search(String, Pageable)} method
+   * Tests the {@link MediaServiceImpl#search(String, Pageable)} method
    */
   @Test
   void searchTest() {
@@ -37,7 +36,7 @@ class MovieServiceImplTest {
     var pageRequest = Pageable.ofSize(10);
     var movies = Page.<Movie>empty(pageRequest);
 
-    when(movieRepository.search(query, pageRequest)).thenReturn(movies);
+    when(mediaRepository.searchByTitle(query, pageRequest)).thenReturn(movies);
 
     var result = movieService.search(query, pageRequest);
     assertEquals(movies, result);

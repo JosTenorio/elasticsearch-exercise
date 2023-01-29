@@ -6,14 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Definition for a Movie entity
- * @author Andres Marenco
+ * Definition for a media document
+ * @author Joseph Tenorio
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Movie {
-  private String name;
-  private int year;
+public class Media {
+    private String title;
+    private String genre;
+    private Float rate;
+    private Integer year;
+
 }
