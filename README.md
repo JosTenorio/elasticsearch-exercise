@@ -16,7 +16,7 @@ The CSV is already included in the project in both [main](src\main\resources\imd
 
 ## Pre-requirements
 - [Java 17](https://www.oracle.com/java/technologies/downloads/#java17)
-- [Gradle 7.3.3](https://gradle.org/releases/)
+- [Gradle 7.3.3](https://gradle.org/releases/) (Some Java IDE's, suchs as the one used for this exercise [IntelliJ IDEA](https://www.jetbrains.com/idea/), come with Gradle integrated)
 - [Docker Desktop 4.16.2 (or current stable release)](https://docs.docker.com/desktop/release-notes/#4162) 
 
 ## Setting up the Elasticsearch cluster
