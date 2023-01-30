@@ -137,7 +137,7 @@ public class MediaRepositoryImpl implements MediaRepository {
             case BETWEEN2AND4 -> rangeQueryBuilder.gte(JsonData.of(2)).lt(JsonData.of(4));
             // The .from(0) method is added to exclude those documents that originally had
             // no rate.
-            case BELLOW -> rangeQueryBuilder.lt(JsonData.of(2)).gte(JsonData.of(4));
+            case BELLOW -> rangeQueryBuilder.lt(JsonData.of(2)).gte(JsonData.of(0));
             default -> {
             }
         }

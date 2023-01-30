@@ -41,7 +41,7 @@ public class MediaController {
     return ResponseEntity.ok(mediaService.countRateRanges());
   }
 
-  @Operation(summary = "Filter the movie collection by genre and rate range",
+  @Operation(summary = "Filter the media collection by genre and rate range",
           description = "Queries for all media documents belonging to a given genre and the rate range" +
                   " corresponding to the rangeCode. Ranges codes: above 8 = 0, [6-8[ = 1, [4-6[ = 2, " +
                   "[2-4[ = 3, bellow 2 = 4")
