@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * Default implementation of {@link MediaService}
- * @author Andres Marenco
+ * @author Joseph Tenorio
  */
 @Service
 public class MediaServiceImpl implements MediaService {
@@ -31,7 +31,7 @@ public class MediaServiceImpl implements MediaService {
   }
 
   @Override
-  public Page<Media> searchGenreInRateRange(String genre, Integer range, Pageable pageRequest) {
-    return mediaRepository.searchByTitleInRateRange(genre, range, pageRequest);
+  public Page<Media> searchGenreInRateRange(String genre, Integer rangeCode, Pageable pageRequest) {
+    return mediaRepository.searchByTitleInRateRange(genre, rangeCode, pageRequest);
   }
 }

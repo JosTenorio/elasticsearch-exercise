@@ -34,19 +34,25 @@ public class MediaController {
     return ResponseEntity.ok(mediaService.searchTitle(query, pageRequest));
   }
 
-  @Operation(summary = "Count the amount of media titles ranges of their rate",
-          description = "Counts the different titles found in each range of rates: " +
-                  "All above, [6-8[, [4-6[, [2-4[, All below")
+  @Operation(summary = "Count the amount of media documents in ranges of their rate",
+          description = "Counts the amount of different media found in each rate range available")
   @GetMapping(value = "/rate/range-count", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Map<String, Integer>> countRateRanges() {
     return ResponseEntity.ok(mediaService.countRateRanges());
   }
 
   @Operation(summary = "Filter the movie collection by genre and rate range",
-          description = "Queries for all media documents belonging to a given genre whose rating is in a given range")
+          description = "Queries for all media documents belonging to a given genre and the rate range" +
+                  " corresponding to the rangeCode. Ranges codes: above 8 = 0, [6-8[ = 1, [4-6[ = 2, " +
+                  "[2-4[ = 3, bellow 2 = 4")
   @GetMapping(value = "/filter/genre-rate-range", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Page<Media>> searchGenreInRateRange(@RequestParam("genre") String genre, @RequestParam("range") Integer range,
-                                            @ParameterObject Pageable pageRequest) {
-    return ResponseEntity.ok(mediaService.searchGenreInRateRange(genre, range, pageRequest));
+  public ResponseEntity<?> searchGenreInRateRange(@RequestParam("genre") String genre,
+                                                            @RequestParam("rangeCode") Integer rangeCode,
+                                                            @ParameterObject Pageable pageRequest) {
+    try {
+      return ResponseEntity.ok(mediaService.searchGenreInRateRange(genre, rangeCode, pageRequest));
+    } catch (IllegalArgumentException ex) {
+      return ResponseEntity.badRequest().body("{ \"error\": \"" + ex.getMessage() + " \"}");
+    }
   }
 }

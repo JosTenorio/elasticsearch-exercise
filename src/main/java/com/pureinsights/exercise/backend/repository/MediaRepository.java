@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Repository for {@link Media} entities
- * @author Andres Marenco
+ * @author Joseph Tenorio
  */
 public interface MediaRepository {
   /**
@@ -25,9 +25,10 @@ public interface MediaRepository {
 
   /**
    * @param genre the genre to search
-   * @param range the code of the ratings range to restrict the search ( 1 = above, 2 = [6-8[, 3 = [4-6[, 4 = [2-4[, 5 = below )
+   * @param rangeCode the code of the ratings range to restrict the search ( 0 = above, 1 = [6-8[,
+   *                 2 = [4-6[, 3 = [2-4[, 4 = below )
    * @param pageRequest the page request configuration
    * @return a page with the results of the search
    */
-  Page<Media> searchByTitleInRateRange(String genre, Integer range, Pageable pageRequest);
+  Page<Media> searchByTitleInRateRange(String genre, Integer rangeCode, Pageable pageRequest);
 }

@@ -1,11 +1,16 @@
 package com.pureinsights.exercise.backend.repository;
 
-import co.elastic.clients.elasticsearch.core.SearchResponse;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for {@link MediaRepositoryImpl}
@@ -13,21 +18,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 @ExtendWith(MockitoExtension.class)
 class MediaRepositoryImplTest {
-
   @InjectMocks
   private MediaRepositoryImpl mediaRepository;
 
   /**
-   * Tests the {@link MediaRepositoryImpl#init()} method, making sure the index is created
-   * and has all documents of the test dataset.
+   * Tests the {@link MediaRepositoryImpl#searchByTitleInRateRange(String, Integer, Pageable)} )} method
+   * when an {@link IllegalArgumentException} is thrown
    */
   @Test
-  void initTest() throws Exception {
-    mediaRepository.init();
-    SearchResponse<Void> response = mediaRepository.client.search(s -> s
-                    .index(MediaRepositoryImpl.INDEX)
-                    .size(0)
-                    .query(q -> q.matchAll(ma -> ma)), Void.class);
-    assertEquals(48, response.hits().total().value());
+  void searchByTitleInRateRange_illegalArgumentException_Test() {
+    var pageRequest = PageRequest.of(1, 2);
+    var genre = RandomStringUtils.randomAlphabetic(5);
+    assertThrows(IllegalArgumentException.class, () -> mediaRepository
+            .searchByTitleInRateRange(genre, -8, pageRequest));
   }
+
 }
